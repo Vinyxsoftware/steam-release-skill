@@ -4,6 +4,8 @@ A Claude Code skill for indie developers who want to bring a PC game to Steam. I
 
 Steam rewards lead time. Without a store page and wishlists months before launch, even a good game rarely sells. This skill keeps that in view from day one.
 
+![Steam deadlines worked out backwards from a release date](docs/timeline.svg)
+
 ## What it covers
 
 | Phase | Examples |
@@ -43,6 +45,14 @@ As a Claude Code plugin:
 Or copy `skills/steam-release/` into `~/.claude/skills/` (all projects) or `.claude/skills/` (one project).
 
 The skill loads by itself when you talk about Steam, wishlists, Next Fest, capsules or a launch date. Put your project's own release context (milestones, press kit, naming rules) in the project's `CLAUDE.md`. The skill reads it first.
+
+### Other agents
+
+The skill uses the open `SKILL.md` format, so it also works with other coding agents that read skills, such as Codex CLI, Gemini CLI, Cursor or GitHub Copilot. Copy the `skills/steam-release/` folder to wherever your agent loads skills from.
+
+## Works well with
+
+- [GodotPrompter](https://github.com/jame581/GodotPrompter): Godot 4 skills for building the game itself. This skill takes over when it's time to ship on Steam.
 
 ## Keeping it current
 
