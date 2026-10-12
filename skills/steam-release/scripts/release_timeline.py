@@ -30,6 +30,10 @@ def sub_business_days(d: date, n: int) -> date:
     return d
 
 
+def fmt(d: date) -> str:
+    return d.strftime("%a %d %b %Y")
+
+
 def parse(s: str) -> date:
     try:
         return date.fromisoformat(s)
@@ -57,58 +61,79 @@ def main() -> int:
     account_rec = sub_business_days(min(store_review_rec, fee_latest), TAX_CHECK_BUSINESS_DAYS)
     build_review_latest = sub_business_days(release, REVIEW_BUSINESS_DAYS)
 
-    rows = [
-        (account_rec, "Steamworks account, tax interview, USD 100 fee", "recommended (check takes up to 15 business days)"),
-        (store_review_rec, "Submit store page for review", "recommended"),
-        (coming_soon_rec, "Coming Soon page public", "recommended (6 months before)"),
-        (fee_latest, "Fee paid at the latest", "hard (21-day wait, before store review)"),
-        (store_review_latest, "Submit store page at the latest", "hard (7 business days)"),
-        (coming_soon_latest, "Coming Soon page public at the latest", "hard (2 weeks)"),
-        (build_review_latest, "Submit release build and launch discount", "hard (7 business days)"),
-        (release, "Release", ""),
-    ]
+    store_why = "review takes up to 7 business days"
+    live_why = "must be live 2 weeks before release"
     warnings = []
+    fest = ""
+    fest_best = []
 
     if a.nextfest:
         nf = parse(a.nextfest)
         nf_end = nf + timedelta(days=NF_LENGTH_DAYS)
-        rows += [
-            (nf - timedelta(days=90), "Demo public (feedback before the fest)", "recommended"),
-            (nf - timedelta(days=NF_PRESS_PREVIEW_DAYS), "Submit demo for review (press preview)", "hard if press preview wanted"),
-            (nf - timedelta(days=NF_LATEST_DAYS), "Submit demo for review at the latest", "hard (3 weeks)"),
-            (nf, "Next Fest starts", ""),
-            (nf_end, "Next Fest ends", ""),
+        fest = f"Next Fest {fmt(nf)} to {fmt(nf_end)}"
+        # Next Fest needs a public store page, so the page deadlines move earlier
+        nf_live = nf - timedelta(days=NF_LATEST_DAYS)
+        nf_page = sub_business_days(nf_live, REVIEW_BUSINESS_DAYS)
+        if nf_page < store_review_latest:
+            store_review_latest, store_why = nf_page, "Next Fest needs a live store page"
+        if nf_live < coming_soon_latest:
+            coming_soon_latest, live_why = nf_live, "Next Fest needs a live store page"
+        fee_latest = min(fee_latest, store_review_latest)
+        fest_must = [(nf - timedelta(days=NF_LATEST_DAYS), "Send demo for review", "Next Fest rule: 3 weeks before")]
+        fest_best = [
+            (max(nf - timedelta(days=60), coming_soon_rec + timedelta(days=7)), "Demo is live", "time for feedback before Next Fest"),
+            (nf - timedelta(days=NF_PRESS_PREVIEW_DAYS), "Send demo for review", "to be in the Next Fest press preview"),
         ]
-        nf_page = sub_business_days(nf - timedelta(days=NF_LATEST_DAYS), REVIEW_BUSINESS_DAYS)
-        rows.append((nf_page, "Submit store page (must be public for the fest)", "hard for Next Fest"))
         if coming_soon_rec > nf:
-            warnings.append("Recommended Coming Soon date falls after Next Fest. Publish the page earlier.")
+            warnings.append("The recommended Coming Soon date is after Next Fest. Put the page up earlier.")
         if nf_end >= release:
             warnings.append("Release is before Next Fest ends. Only unreleased games can take part.")
         gap = (release - nf_end).days
         if 0 < gap < 30:
-            warnings.append(f"Only {gap} days between fest and release. Little time to act on feedback.")
+            warnings.append(f"Only {gap} days between Next Fest and release. Little time to act on feedback.")
         if gap > 150:
-            warnings.append(f"{gap} days between fest and release. The wishlist boost tends to fade, rule of thumb is 1 to 4 months.")
+            warnings.append(f"{gap} days between Next Fest and release. The wishlist boost fades, aim for 1 to 4 months.")
+    else:
+        fest_must = []
 
-    rows.sort(key=lambda r: r[0])
-    print(f"Release {release.isoformat()} ({release.strftime('%A')}), reference date {today.isoformat()}\n")
-    print(f"{'Date':<12} {'Step':<56} Type")
-    print("-" * 110)
-    for d, what, kind in rows:
-        flag = "  <- MISSED" if d < today and kind.startswith("hard") else ("  <- past" if d < today else "")
-        print(f"{d.isoformat():<12} {what:<56} {kind}{flag}")
+    # (date, what to do, why)
+    must = [
+        (fee_latest, "Pay the USD 100 app fee", "needed before the store page, 21-day wait before release"),
+        (store_review_latest, "Send store page to Valve for review", store_why),
+        (coming_soon_latest, "Coming Soon page is live", live_why),
+        (build_review_latest, "Send final build and launch discount for review", "review takes up to 7 business days"),
+    ] + fest_must
+    best = [
+        (account_rec, "Open Steamworks account, do the tax interview", "tax check takes up to 15 business days"),
+        (store_review_rec, "Send store page to Valve for review", ""),
+        (coming_soon_rec, "Coming Soon page is live", "6 months to collect wishlists"),
+    ] + fest_best
+
+    print(f"Release: {fmt(release)}" + (f"   |   {fest}" if fest else ""))
+
+    def block(title, subtitle, items, missed_word):
+        print(f"\n{title}")
+        print(f"{subtitle}\n")
+        for d, what, why in sorted(items, key=lambda r: r[0]):
+            flag = f"   <- {missed_word}" if d < today else ""
+            reason = f"  ({why})" if why else ""
+            print(f"  {fmt(d)}   {what}{reason}{flag}")
+
+    must_note = "Steam rules. Miss one and you lose Next Fest or must move the release." if a.nextfest else "Steam rules. Miss one and the release date moves."
+    block("MUST DO BY", must_note, must, "MISSED")
+    block("BEST TO DO BY", "Recommended, so enough people wishlist the game.", best, "late")
 
     if release.weekday() >= 5:
         warnings.append("Release falls on a weekend. Indies usually launch Monday to Thursday.")
-    if fee_latest < today or coming_soon_latest < today:
-        warnings.append("At least one hard deadline has passed. Move the release date.")
+    hard_missed = any(d < today for d, _, _ in must)
+    if hard_missed:
+        warnings.append("At least one MUST date has passed. Move the release date.")
     if warnings:
         print("\nWarnings:")
         for w in warnings:
             print(f"- {w}")
-    print("\nNote: re-check values in the Steamworks docs before committing to a plan.")
-    return 1 if (fee_latest < today or coming_soon_latest < today) else 0
+    print("\nValues from the Steamworks docs. Re-check them before you commit to a date.")
+    return 1 if hard_missed else 0
 
 
 if __name__ == "__main__":

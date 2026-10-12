@@ -6,6 +6,8 @@ Steam rewards lead time. Without a store page and wishlists months before launch
 
 ![Steam deadlines worked out backwards from a release date](docs/timeline.svg)
 
+**Red** dates are Steam rules: miss one and you lose Next Fest or have to move your release. **Green** dates are recommended, so enough people wishlist the game before launch.
+
 ## What it covers
 
 | Phase | Examples |
@@ -24,7 +26,7 @@ Official Valve rules are kept apart from community rules of thumb, and every rul
 Two scripts, Python standard library only (Windows, macOS, Linux):
 
 ```bash
-# Deadlines worked out backwards from a launch date
+# Must-do and best-to-do dates, worked out backwards from a launch date
 python3 skills/steam-release/scripts/release_timeline.py --release 2027-09-14 --nextfest 2027-06-14
 
 # Check store and library art for size and completeness

@@ -1,28 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="482" viewBox="0 0 1000 482" role="img" aria-label="Output of release_timeline.py: Steam deadlines worked out backwards from a release date">
-<rect width="1000" height="482" rx="10" fill="#0f1720"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="892" height="549" viewBox="0 0 892 549" role="img" aria-label="Output of release_timeline.py: Steam deadlines worked out backwards from a release date, split into must-do and best-to-do dates">
+<rect width="892" height="549" rx="10" fill="#0f1720"/>
 <circle cx="22" cy="20" r="6" fill="#ff5f57"/><circle cx="42" cy="20" r="6" fill="#febc2e"/><circle cx="62" cy="20" r="6" fill="#28c840"/>
 <text font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" xml:space="preserve">
-<tspan x="20" y="57" fill="#7dd3fc">$ python3 release_timeline.py --release 2027-09-14 --nextfest 2027-06-14</tspan>
-<tspan x="20" y="76" fill="#e2e8f0"></tspan>
-<tspan x="20" y="95" fill="#e2e8f0">Release 2027-09-14 (Tuesday), reference date 2026-10-12</tspan>
-<tspan x="20" y="114" fill="#e2e8f0"></tspan>
-<tspan x="20" y="133" fill="#e2e8f0">Date         Step                                                     Type</tspan>
-<tspan x="20" y="152" fill="#e2e8f0">------------------------------------------------------------------------------------------------------------------</tspan>
-<tspan x="20" y="171" fill="#86efac">2027-02-16   Steamworks account, tax interview, USD 100 fee           recommended (check takes up to 15 business days)</tspan>
-<tspan x="20" y="190" fill="#86efac">2027-03-09   Submit store page for review                             recommended</tspan>
-<tspan x="20" y="209" fill="#86efac">2027-03-16   Demo public (feedback before the fest)                   recommended</tspan>
-<tspan x="20" y="228" fill="#86efac">2027-03-18   Coming Soon page public                                  recommended (6 months before)</tspan>
-<tspan x="20" y="247" fill="#fca5a5">2027-05-10   Submit demo for review (press preview)                   hard if press preview wanted</tspan>
-<tspan x="20" y="266" fill="#fca5a5">2027-05-13   Submit store page (must be public for the fest)          hard for Next Fest</tspan>
-<tspan x="20" y="285" fill="#fca5a5">2027-05-24   Submit demo for review at the latest                     hard (3 weeks)</tspan>
-<tspan x="20" y="304" fill="#fde68a">2027-06-14   Next Fest starts                                         </tspan>
-<tspan x="20" y="323" fill="#fde68a">2027-06-21   Next Fest ends                                           </tspan>
-<tspan x="20" y="342" fill="#fca5a5">2027-08-20   Fee paid at the latest                                   hard (21-day wait, before store review)</tspan>
-<tspan x="20" y="361" fill="#fca5a5">2027-08-20   Submit store page at the latest                          hard (7 business days)</tspan>
-<tspan x="20" y="380" fill="#fca5a5">2027-08-31   Coming Soon page public at the latest                    hard (2 weeks)</tspan>
-<tspan x="20" y="399" fill="#fca5a5">2027-09-03   Submit release build and launch discount                 hard (7 business days)</tspan>
-<tspan x="20" y="418" fill="#fde68a">2027-09-14   Release                                                  </tspan>
-<tspan x="20" y="437" fill="#e2e8f0"></tspan>
-<tspan x="20" y="456" fill="#94a3b8">Note: re-check values in the Steamworks docs before committing to a plan.</tspan>
+<tspan x="24" y="61" fill="#7dd3fc">$ python3 release_timeline.py --release 2027-09-14 --nextfest 2027-06-14</tspan>
+<tspan x="24" y="82" fill="#94a3b8"></tspan>
+<tspan x="24" y="103" fill="#fde68a" font-weight="700">Release: Tue 14 Sep 2027   |   Next Fest Mon 14 Jun 2027 to Mon 21 Jun 2027</tspan>
+<tspan x="24" y="124" fill="#94a3b8"></tspan>
+<tspan x="24" y="145" fill="#f87171" font-weight="700">MUST DO BY</tspan>
+<tspan x="24" y="166" fill="#94a3b8">Steam rules. Miss one and you lose Next Fest or must move the release.</tspan>
+<tspan x="24" y="187" fill="#94a3b8"></tspan>
+<tspan x="24" y="208" fill="#f87171">  Thu 13 May 2027</tspan><tspan fill="#e2e8f0">   Pay the USD 100 app fee</tspan><tspan fill="#94a3b8">  (needed before the store page, 21-day wait before release)</tspan>
+<tspan x="24" y="229" fill="#f87171">  Thu 13 May 2027</tspan><tspan fill="#e2e8f0">   Send store page to Valve for review</tspan><tspan fill="#94a3b8">  (Next Fest needs a live store page)</tspan>
+<tspan x="24" y="250" fill="#f87171">  Mon 24 May 2027</tspan><tspan fill="#e2e8f0">   Coming Soon page is live</tspan><tspan fill="#94a3b8">  (Next Fest needs a live store page)</tspan>
+<tspan x="24" y="271" fill="#f87171">  Mon 24 May 2027</tspan><tspan fill="#e2e8f0">   Send demo for review</tspan><tspan fill="#94a3b8">  (Next Fest rule: 3 weeks before)</tspan>
+<tspan x="24" y="292" fill="#f87171">  Fri 03 Sep 2027</tspan><tspan fill="#e2e8f0">   Send final build and launch discount for review</tspan><tspan fill="#94a3b8">  (review takes up to 7 business days)</tspan>
+<tspan x="24" y="313" fill="#94a3b8"></tspan>
+<tspan x="24" y="334" fill="#4ade80" font-weight="700">BEST TO DO BY</tspan>
+<tspan x="24" y="355" fill="#94a3b8">Recommended, so enough people wishlist the game.</tspan>
+<tspan x="24" y="376" fill="#94a3b8"></tspan>
+<tspan x="24" y="397" fill="#4ade80">  Tue 16 Feb 2027</tspan><tspan fill="#e2e8f0">   Open Steamworks account, do the tax interview</tspan><tspan fill="#94a3b8">  (tax check takes up to 15 business days)</tspan>
+<tspan x="24" y="418" fill="#4ade80">  Tue 09 Mar 2027</tspan><tspan fill="#e2e8f0">   Send store page to Valve for review</tspan>
+<tspan x="24" y="439" fill="#4ade80">  Thu 18 Mar 2027</tspan><tspan fill="#e2e8f0">   Coming Soon page is live</tspan><tspan fill="#94a3b8">  (6 months to collect wishlists)</tspan>
+<tspan x="24" y="460" fill="#4ade80">  Thu 15 Apr 2027</tspan><tspan fill="#e2e8f0">   Demo is live</tspan><tspan fill="#94a3b8">  (time for feedback before Next Fest)</tspan>
+<tspan x="24" y="481" fill="#4ade80">  Mon 10 May 2027</tspan><tspan fill="#e2e8f0">   Send demo for review</tspan><tspan fill="#94a3b8">  (to be in the Next Fest press preview)</tspan>
+<tspan x="24" y="502" fill="#94a3b8"></tspan>
+<tspan x="24" y="523" fill="#94a3b8">Values from the Steamworks docs. Re-check them before you commit to a date.</tspan>
 </text>
 </svg>

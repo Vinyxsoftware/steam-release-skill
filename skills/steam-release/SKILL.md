@@ -32,7 +32,7 @@ python3 scripts/asset_check.py marketing/steam   # header.png, main.png, screens
 ## Workflow for a release plan
 
 - [ ] Pick a target launch month, not a day. Fix the day after Next Fest.
-- [ ] Run `release_timeline.py` and copy the hard deadlines into the plan.
+- [ ] Run `release_timeline.py` and copy the MUST dates into the plan.
 - [ ] Put the Coming Soon page up as early as possible, rule of thumb 6 to 12 months before launch.
 - [ ] Choose a Next Fest: each game can join only once. It helps most 1 to 4 months before launch.
 - [ ] Set a wishlist target and compare it monthly with the Steamworks report.
@@ -50,6 +50,6 @@ python3 scripts/asset_check.py marketing/steam   # header.png, main.png, screens
 
 ## Examples
 
-- "When do I have to pay the fee if I launch in March?" → run the script, show deadlines as a table, mention the 10 to 15 business days tax check.
+- "When do I have to pay the fee if I launch in March?" → run the script, show the MUST and BEST dates, mention the 10 to 15 business days tax check.
 - "Write my store copy" → load store-page.md, short description around 300 characters, hook in the first sentence, in every store language.
 - "Is a demo worth it?" → marketing.md, section Demo and Next Fest.
