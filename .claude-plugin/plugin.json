@@ -1,0 +1,14 @@
+{
+  "name": "steam-release",
+  "description": "Plan and check an indie game release on Steam: Steamworks deadlines, store page and capsule art, wishlists, demo, Next Fest, pricing and discounts, AI disclosure, and Godot export with GodotSteam and SteamPipe. Includes a deadline calculator and a store-asset checker.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Vinyxsoftware",
+    "url": "https://vinyxsoftware.ch"
+  },
+  "homepage": "https://github.com/Vinyxsoftware/steam-release-skill",
+  "repository": "https://github.com/Vinyxsoftware/steam-release-skill",
+  "license": "MIT",
+  "keywords": ["steam", "steamworks", "gamedev", "indie", "wishlist", "next-fest", "godot", "release"],
+  "skills": ["./skills/steam-release"]
+}
